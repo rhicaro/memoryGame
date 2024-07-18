@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createBoard() {
         for (let i=0; i < cardArray.length; i++) {
-            var card = document.createElement('img')
+            const card = document.createElement('img')
             card.setAttribute('src', 'images/blank.png')
             card.setAttribute('data-id', i)
             card.addEventListener('click', flipCard)
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //check for matches
     function checkForMatch () {
-        var cards = document.querySelectorAll('img')
+        const cards = document.querySelectorAll('img')
         const optionOneId = cardsChosenId[0]
         const optionTwoId = cardsChosenId[1]
 
@@ -84,7 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('You found a match')
             cards[optionOneId].setAttribute('src', 'images/white.png')
             cards[optionTwoId].setAttribute('src', 'images/white.png')
-            cardsWob.push(cardsChosen)
+            cards[optionOneId].removeEventListener('click', flipCard)
+            cards[optionTwoId].removeEventListener('click', flipCard)
+            cardsWon.push(cardsChosen)
         } else {
             cards[optionOneId].setAttribute('src', 'images/blank.png')
             cards[optionTwoId].setAttribute('src', 'images/blank.png')
@@ -94,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardsChosenId = []
         resultDisplay.textContent = cardsWon.length
         if (cardsWon.length === cardArray.length/2) {
-            resultDisplay.textContent = 'Congratulations! You found them all!'
+            resultDisplay.textContent = ' Congratulations! You found them all!'
         }
     }
 
